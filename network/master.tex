@@ -1,0 +1,59 @@
+\documentclass[11pt]{jarticle}
+\usepackage[dvipdfmx]{graphicx}        % 画像を扱えるようにする．
+\usepackage{ascmac}                    % 丸枠を使用可能にする．
+\usepackage{color}                     % 色文字を有効にする．
+\usepackage{url}                       % \url{}を使用可能にする．
+\usepackage{fancyvrb}                  % \Verbatimを使用可能にする．
+\usepackage{fancybox}                  % itembox等を使用可能にする．
+\usepackage[junior]{gaiyo}             % styファイルは既存のものを使用．
+%
+% ここからマニュアル用スタイル設定．
+\makeatletter
+\gdef\@id{}
+\gdef\@author{}
+%
+\def\hdtype#1{\gdef\hd@type{#1}}
+\def\@maketitle{\begin{center}
+  \vspace{\baselineskip}
+  {\fontsize{16pt}{0.6565cm}\selectfont \bfseries
+    \@title \par
+  }
+\end{center}
+}
+\makeatother
+% ここまでマニュアル用スタイル設定．
+%
+% タイトルとヘッダの設定．
+\title{ネットワーク講習}
+\hdtype{ネットワーク講習}
+%
+% ここから文書開始．
+%
+\begin{document}
+\maketitle
+%
+% ここから本文．
+% 
+
+%\include{intro}
+%\include{osi}
+%\include{ip}
+%\include{router}
+%\include{vpn}
+%\include{tcp-udp}
+%\include{application}
+
+%
+%
+% 編集者記録欄（学籍番号及び氏名）．
+\vspace{1cm}
+\begin{table}[b]
+  \begin{flushright}
+    \begin{tabular}{llll}
+      20XX年X月X日 & 初版 & XX-XXXX & 名無 権兵衛 \\
+      20XX年Y月Y日 & 第二版 & YY-YYYY & John Smith
+    \end{tabular}
+  \end{flushright}
+\end{table}
+
+\end{document}
