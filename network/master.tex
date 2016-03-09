@@ -1,11 +1,30 @@
 \documentclass[11pt]{jarticle}
 \usepackage[dvipdfmx]{graphicx}        % 画像を扱えるようにする．
-\graphicspath{{./img/}} 
+\graphicspath{{./img/}}
 \usepackage{ascmac}                    % 丸枠を使用可能にする．
 \usepackage{color}                     % 色文字を有効にする．
 \usepackage{url}                       % \url{}を使用可能にする．
 \usepackage{fancyvrb}                  % \Verbatimを使用可能にする．
 \usepackage{fancybox}                  % itembox等を使用可能にする．
+\usepackage{type1cm}
+\usepackage{listings,jlisting}
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\scriptsize,
+  commentstyle={\itshape \color[cmyk]{1,0.4,1,0}},
+  classoffset=1,
+  keywordstyle={\bfseries \color[cmyk]{0,1,0,0}},
+  stringstyle={\ttfamily \color[rgb]{0,0,1}},
+  frame=tRBl,
+  framesep=5pt,
+  showstringspaces=false,
+  numbers=left,
+  stepnumber=1,
+  numberstyle=\tiny,
+  tabsize=2,
+  breaklines = true,
+  escapeinside={(*@}{@*)},
+}
 \usepackage[junior]{gaiyo}             % styファイルは既存のものを使用．
 %
 % ここからマニュアル用スタイル設定．
