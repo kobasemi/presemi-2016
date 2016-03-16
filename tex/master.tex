@@ -1,0 +1,253 @@
+\documentclass[11pt]{jarticle}
+\usepackage[dvipdfmx]{graphicx}        % 画像を扱えるようにする．
+\graphicspath{{./img/}} 
+\usepackage{ascmac}                    % 丸枠を使用可能にする．
+\usepackage{color}                     % 色文字を有効にする．
+\usepackage{url}                       % \url{}を使用可能にする．
+\usepackage{fancyvrb}                  % \Verbatimを使用可能にする．
+\usepackage{fancybox}                  % itembox等を使用可能にする．
+\usepackage{listings,jlisting}
+\lstset{
+  frame={single},
+  breaklines=true,
+  numbers=left,
+  stepnumber=1,
+}
+\usepackage[junior]{gaiyo}             % styファイルは既存のものを使用．
+%
+% ここからマニュアル用スタイル設定．
+\makeatletter
+\gdef\@id{}
+\gdef\@author{}
+%
+\def\hdtype#1{\gdef\hd@type{#1}}
+\def\@maketitle{\begin{center}
+  \vspace{\baselineskip}
+  {\fontsize{16pt}{0.6565cm}\selectfont \bfseries
+    \@title \par
+  }
+\end{center}
+}
+\makeatother
+% ここまでマニュアル用スタイル設定．
+%
+% タイトルとヘッダの設定．
+\title{\TeX 講習}
+\hdtype{\TeX 講習}
+%
+% ここから文書開始．
+%
+\begin{document}
+\maketitle
+%
+% ここから本文．
+% 
+
+
+\section{\TeX とは}
+
+%:
+\TeX はスタンフォード大学のDonald E.Knuth博士によって開発された組版環境であり，簡単に説明すると``文書を作成するソフト''である．小林ゼミでは，報告書や卒論の作成にWordではなく\TeX を用いており，このプレゼミの資料も\TeX を用いて作成している．\TeX を使用するためには環境構築を行う必要があるのに加え，\TeX はHTMLを筆頭とするマークアップ言語のようなものであり，初めて触れる人に取ってはプログラムのように感じるかもしれない．ただ，慣れるとWordよりも圧倒的に使いやすいものとなるため，時間はかかるかもしれないが使いこなせるようになってもらいたい．
+
+
+\section{WebTeX}
+
+WebTeXとは，小林ゼミ9期生の高坂が開発したWebベースの\TeX エディタである．
+このシステムでは，Webブラウザを通じて\TeX ファイルの編集やコンパイル，PDFの生成をWebブラウザ上で行うことができる．また，RedPenと呼ばれるソフトウェアを用いた自動添削もあわせて行えるようになっている．
+
+プレゼミでは時間が限られているため，個人端末にTeXの環境を構築することはせず，このWebTeXを利用して説明を行う．
+\TeX の環境構築方法はOSによって異なるため，個人端末に\TeX 環境を構築したい人は自分で調べるか，Xoopsのメインメニューから「研究倉庫[wiki]」→「知識データ」→「TeX関係」にもまとまっているので参考にしてほしい．
+
+
+\section{WebTeXの使い方}
+
+WebTeXサービスへは，ゼミネットワークに接続した状態でWebブラウザを開き，Xoopsホームの「サービス（内部）」から「WebTeX」をクリックすることでアクセスできる．アクセスするとトップ画面が表示されるので，画面右上の``Sign in''ボタンを選択してサインインダイアログを表示する．ここにプレゼミで配布したアカウントの情報を入力して``Sign in''ボタンを選択することで，サインインすることができる．
+
+サインインすると，メイン画面が表示される．まずは，左上の``Directory Llst''からディレクトリリストを開き，これから作成する\TeX ファイルなどを保存する作業ディレクトリを作成する．``Create directory''を選択することで，ディレクトリ作成ダイアログが表示される．ここに作成したいディレクトリ名を入力し，``作成''ボタンを選択することで，WebTeXサーバ上にディレクトリが作成される．
+
+作成できたら再度ディレクトリリストを開き，作成したディレクトリ名を選択して作業ディレクトリを変更する．左上の``File list''からファイルリストを開くことで，現在の作業ディレクトリを確認することができる．
+
+作業ディレクトリの設定が出来たら，いよいよ\TeX ファイルの作成を行う．画面の左側にあるエディタ部分に\TeX のコードを書いていく．書き終えたら``Compile''を選択する．すると，エディタ部分に書いたコードが作業ディレクトリの下に``document.tex''として保存され，コンパイルされた後，PDFが生成される．また，生成されたPDFはテキストファイルに変換され，RedPenによる自動添削にかけられる．コンパイルが完了し正常にPDFが生成されたら，画面右側にPDFのプレビューが表示される．また画面の下にある``Result''ボタンや``RedPen''ボタンを選択することで，コンパイルログやRedPenの自動添削結果を見ることができる．
+
+作成した\TeX ファイルや生成されたPDFファイルをローカルにダウンロードしたい場合は，``Download''を選択し，それぞれリンクを選択する．
+
+
+\section{\TeX の記述方法}
+
+\fbox{作業} まずは以下のように入力し，コンパイルしよう．名前や学籍番号は各自変更すること．
+\begin{lstlisting}
+\documentclass[11pt]{jarticle}
+\usepackage[junior]{gaiyo}
+
+\title{スタイルテスト}
+\id{情XX-XXXX}
+\author{自分の名前}
+\teacher{小林 孝史}
+
+\begin{document}
+\maketitle
+
+\section{スタイルテスト}
+ゼミのスタイルファイルのテストです．
+
+\subsection{ゼミの報告書}
+小林ゼミでの報告書は，このような形式で作成して提出します．
+
+\end{document}
+\end{lstlisting}
+
+2行目の記述で，報告書や卒論概要の執筆時に小林ゼミで使用している\TeX のスタイルファイルを読み込んでいる．
+このスタイルファイル（gaiyo.sty）はXoopsの「文書管理」→「Document Templates」→「卒論キット」からダウンロードすることができるので，個人端末にTeX環境を構築する人はこれを利用すること．
+なお，WebTeXでは標準で利用できるようになっている．
+
+9行目〜18行目のdocument環境で囲まれた範囲が本文となる．
+10行目の\verb+\maketitle+コマンドによって4行目〜7行目で設定したタイトル部が出力される．
+
+12行目の\verb+\section+コマンドと15行目の\verb+\subsection+コマンドは，階層的な見出しを出力する．見出しの階層とコマンドの対応を表\ref{tab:section}に示す．
+
+\begin{table}[htb]
+  \begin{center}
+    \caption{見出し階層}
+    \begin{tabular}{|l|l|} \hline
+      コマンド & 階層 \\ \hline
+      \verb+\section+ & 節  \\
+      \verb+\subsection+ & 項（小節） \\
+      \verb+\subsubsection+ & 目（小々節） \\ \hline
+    \end{tabular}
+    \label{tab:section}
+  \end{center}
+\end{table}
+
+留意点として，\verb+\subsubsection+コマンドは階層が深すぎるため卒論概要などでの利用は推奨されない．どうしても用いなければならない場合は，一度全体の文書構成を見直そう．
+
+
+\newpage
+
+
+\section{その他\TeX コマンド}
+
+以下では，普段の文書作成でよく用いるコマンドをいくつか紹介する．ほとんどの場合，\TeX で実現したい表現があればWebで検索すると出てくるので，今後は各自で調べながら試行錯誤して\TeX での文書作成能力を磨いてほしい．
+
+
+\subsection{図}
+
+プリアンブルに以下を記述することで，画像の表示に必要なgraphicxパッケージを利用できる．
+\begin{screen}
+\verb+\usepackage[dvipdfmx]{graphicx} +
+\end{screen}
+
+\TeX で画像を表示するには，graphicxパッケージのfigure環境と\verb+\includegraphics+コマンドを使用する．
+画像を表示する記述例を以下に示す．
+
+\begin{lstlisting}
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[width=100mm]{sample.eps}
+    \caption{キャプション}
+    \label{fig:sample}
+  \end{center}
+\end{figure}
+\end{lstlisting}
+
+1行目，7行目のfigure環境で囲まれた範囲に表示する画像の設定を記述していく．
+1行目最後の\verb+[htbp]+に画像を表示する位置を指定できる．
+それぞれの意味を表\ref{tab:location}に示す．
+
+\begin{table}[htb]
+  \begin{center}
+    \caption{画像の位置指定}
+    \begin{tabular}{|c|c|} \hline
+      位置指定 & 意味\\ \hline
+      h & 記述した場所に出力  \\
+      t & ページの上部に出力 \\
+      b & ページの下部に出力 \\
+      p & 新しいページに出力 \\ \hline
+    \end{tabular}
+    \label{tab:location}
+  \end{center}
+\end{table}
+
+[...]内の順序は任意であり，例のように複数指定することができる．
+複数指定した場合は，表\ref{tab:location}の上の方から優先的に適用される．
+
+2行目，6行目のcenter環境で囲まれた部分はセンタリングが行われる．
+画像を中央に配置したい場合はこのように指定する．
+
+3行目の\verb+\includegraphics+コマンドで，表示する画像ファイルを指定する．
+[...]内にオプションを指定することができ，出力する画像のサイズや拡大縮小率，画像の回転角度などを指定することができる．
+詳しくは各自で調べてみてほしい．
+
+4行目の\verb+\caption+コマンドで，画像の説明であるキャプションを指定することができる．
+
+5行目の\verb+\label+コマンドで，図にラベル名を付けることができる．
+ラベル名を付けると，本文中に\verb+\ref{ラベル名}+と記述することで図番号の参照を行うことができる．
+
+\fbox{作業} 新しい節を作成し，そこに好きな画像を表示させよう．
+
+
+\newpage
+
+
+\subsection{表}
+
+\TeX で表を出力するには，table環境とtabular環境を使用する．表を表示する記述例を以下に示す．
+
+\begin{lstlisting}
+\begin{table}[htb]
+  \begin{tabular}{|l|c|r||r|} \hline
+    メニュー & サイズ & 値段 & カロリー \\ \hline \hline
+    牛丼 & 並盛 & 500円 & 600 kcal \\
+    牛丼 & 大盛 & 1,000円 & 800 kcal \\
+    牛丼 & 特盛 & 1,500円 & 1,000 kcal \\ \hline
+    牛皿 & 並盛 & 300円 & 250 kcal \\
+    牛皿 & 大盛 & 700円 & 300 kcal \\
+    牛皿 & 特盛 & 1,000円 & 350 kcal \\ \hline
+  \end{tabular}
+\end{table}
+\end{lstlisting}
+
+1行目の\verb+\begin{table}+の後ろに続く\verb+[htb]+では，表の位置を指定することができる．指定方法は図の表示の場合と同じで，意味は表\ref{tab:location}の通りである．
+
+2行目の\verb+\begin{tabular}+の後ろに続く\verb+{|l|c|r||r|}+では，列の文字の位置揃えと縦の罫線を指定している．それぞれの意味を表\ref{tab:table_loc}に示す．
+
+\begin{table}[htb]
+  \begin{center}
+    \caption{tabularの位置指定と罫線の指定}
+    \begin{tabular}{|c|c|} \hline
+      位置指定 & 意味\\ \hline
+      l & 左寄せ（left）  \\
+      c & 中央寄せ（center） \\
+      r & 右寄せ（right） \\
+      \verb+|+ & 縦の罫線 \\ \hline
+    \end{tabular}
+    \label{tab:table_loc}
+  \end{center}
+\end{table}
+
+例では，1番目の列は左寄せ，2番目の列はセンタリング，3，4番目の列は右寄せとなっている．また，縦の罫線``\verb+|+''を2つ重ねると2重線になる．
+
+4行目〜9行目で，表の内容を記述している．各列の要素を``\&''で区切り，各行の終わりを``\verb+\\+''で表している．また，\verb+\hline+コマンドで横の罫線を引くことができ，コマンドを2つ重ねることで2重線となる．
+
+\fbox{作業} 新しい節を作成し，そこに好きな表を作成しよう．
+
+
+\section{Xoopsへのアップロード}
+
+\fbox{作業} 新しい節を作成し，これまでのプレゼミの感想や分からなかったこと，自分で調べたことなど，\TeX のゼミ報告書のスタイルでまとめよう．
+その後，Xoopsの文書管理の「ゼミ」→「H28」→「20160317」へアクセスし，コンパイルして出力したPDFファイルをアップロードすること．
+アップロードする際のファイル名は，「学籍番号（XX-XXXX） 名字（ローマ字）」とする．
+
+%
+%
+% 編集者記録欄（学籍番号及び氏名）．
+\begin{table}[b]
+  \begin{flushright}
+    \begin{tabular}{llll}
+      2015年3月5日 & 初版 & 14M7122 & 吉井 章 \\
+      2016年3月17日 & 第二版 & 15M7112 & 高坂 賢佑 \\
+     \  & \  & 情12-367 & 坂東 翼
+    \end{tabular}
+  \end{flushright}
+\end{table}
+
+\end{document}
