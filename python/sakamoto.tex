@@ -253,12 +253,3 @@ print my_func3(2,4)
 # 4
 \end{lstlisting}
 上記のソースコード\ref{return}では二つのreturn文が確認できる．x \textgreater yの条件が満たされた場合Bが出力されていないことに注目して欲しい．returnはいくつあっても構わないが，returnされたあとの関数の処理は一切無視される．
-\subsection{グローバル変数とローカル変数}
-\begin{lstlisting}[basicstyle=\ttfamily\footnotesize, frame=single]
-x = 5
-def square(x):
-	return x * x
-print x
-square(10)
-print x
-\end{lstlisting}
