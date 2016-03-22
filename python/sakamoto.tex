@@ -2,7 +2,7 @@
 \section{型}
 プログラミングで使われるデータには「型」と呼ばれるものがある．例えば1や2は「数値」で``Hello''というテキストは「文字列」という型である．Pythonには様々なデータ型が用意されている．今回はその中でも重要な数値，文字列，Bool，リストについて説明する．
 \subsection{数値型}
-CやJavaでは「整数」と「少数」は別物であり，表現できる上限値が決まっている．Javaの整数型であるintは整数を表現する型であるため，小数点は扱うことができない．Pythonでも正確には整数型や少数型は存在するものの，それらは同じ「数値型」のようなイメージで扱うことが出来る．
+CやJavaでは「整数」と「小数」は別物であり，表現できる上限値が決まっている．Javaの整数型であるintは整数を表現する型であるため，小数点は扱うことができない．Pythonでも正確には整数型や小数型は存在するものの，それらは同じ「数値型」のようなイメージで扱うことが出来る．
 数値計算では表\ref{arithmetic_operator}の演算子が利用可能である．
 
 \begin{table}[h]
@@ -45,9 +45,9 @@ Boolは「真偽値」とも呼ばれる「True/False」の二値を持つ型で
     \begin{tabular}{|c|c|} \hline
      操作 & 意味 \\ \hline \hline
      x == y & xとyは等しい \\ \hline
-     x is y & xとyは等しい \\ \hline
+     x is y & xとyは同一のオブジェクト \\ \hline
      x != y & xとyは等しくない \\ \hline
-     x is not y & xとyは等しくない \\ \hline
+     x is not y & xとyは同一のオブジェクトではない \\ \hline
      x \textgreater y & xはyより小さい \\ \hline
      x \textless y & xはyより大きい \\ \hline
      x \textgreater= y & xはy以下 \\ \hline
