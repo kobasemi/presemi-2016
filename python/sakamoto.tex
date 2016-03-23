@@ -39,7 +39,7 @@ CやJavaでは「整数」と「小数」は別物であり，表現できる上
 
 \subsection{Bool型}
 Boolは「真偽値」とも呼ばれる「True/False」の二値を持つ型である．Boolは表\ref{comparative_operator}に示した比較演算子と呼ばれる記号で二つの値を比較した際に返される．
-\begin{table}[h]
+\begin{table}[htbp]
  \centering
    \caption{比較演算子}
     \begin{tabular}{|c|c|} \hline
@@ -59,7 +59,7 @@ Boolは「真偽値」とも呼ばれる「True/False」の二値を持つ型で
 \end{table}
 
 また，複数の比較演算子の結果を組み合わせて評価する場合，表\ref{logical_operator}の論理演算子を用いる．
-\begin{table}[h]
+\begin{table}[htbp]
  \centering
   \caption{論理演算子}
    \begin{tabular}{|c|c|} \hline
@@ -121,7 +121,7 @@ Boolは「真偽値」とも呼ばれる「True/False」の二値を持つ型で
 
 \section{分岐処理}
 ifを使うことで条件に応じた分岐処理を行うことが可能である．ifに続く式が真であればインデントされたブロックの処理が実行される．インデントとはスペースやタブで字下げすることをいう．また，同じインデント幅で揃えられた部分をブロックという．複数の条件を指定する場合elifを用いる．elifは任意の数繰り返すことが可能である．いずれにも該当しない場合の処理はelseに続けて書くが，省略することも出来る．Bool型が条件判定に利用され，その値がTrueかFalseかで実行するプログラムが変わる（ソースコード\ref{if}）．
-\begin{figure}[h]
+\begin{figure}[htbp]
  \centering
   \includegraphics[width=10cm]{001.pdf}
   \caption{条件分岐の仕組み}
@@ -142,7 +142,7 @@ else:
 ループ処理は「同じ処理を何度も繰り返す」という処理である．ループ処理の制御構造にはforとwhileの二つがある．
 \subsection{while}
 whileは条件が真である間，インデントされたブロックの処理を繰り返し実行する（ソースコード\ref{while}）．
-\begin{figure}[h]
+\begin{figure}[htbp]
  \centering
   \includegraphics[width=9cm]{003.pdf}
   \caption{Pythonのwhile文}
