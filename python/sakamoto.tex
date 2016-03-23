@@ -24,14 +24,14 @@ CやJavaでは「整数」と「小数」は別物であり，表現できる上
 \subsection{文字列型}
 文字列はシングルクォーテーション（'）かダブルクォーテーション（"）で囲む．テキストも数値と同様に（+）を使った結合や（*）による繰り返しが出来る．またクォート記号三つで複数行に分けて書くことや[n]でn番目の文字を取り出すことが可能である （ソースコード\ref{str}）．
 \begin{lstlisting}[caption=文字列の操作, label=str]
-s = "str"
-print s[1] # 「t」が表示される
-print 'abc' + 'def' # 「abcdef」が表示される
-print "YO" * 5 #「YOYOYOYOYO」が表示される 
-print """HE
-LL
-O!
-"""
+>>> s = "str"
+>>> print s[1] # 「t」が表示される
+>>> print 'abc' + 'def' # 「abcdef」が表示される
+>>> print "YO" * 5 #「YOYOYOYOYO」が表示される 
+>>> print """HE
+... LL
+... O!
+... """
 「HE
   LL
   O!」が表示される
@@ -81,17 +81,17 @@ Boolは「真偽値」とも呼ばれる「True/False」の二値を持つ型で
 \subsection{リスト}
 リスト型はデータを「リスト」状に複数個並べたような型である．リストを使わずに3人の学生の平均点を求めようとすると以下のようになる（ソースコード\ref{unused_list}）．
 \begin{lstlisting}[caption=リストを使わない場合, label=unused_list]
-student1 = 68
-student2 = 81
-student3 = 49
-average = (student1 + student2 + student3) / 3
-print average
+>>> student1 = 68
+>>> student2 = 81
+>>> student3 = 49
+>>> average = (student1 + student2 + student3) / 3
+>>> print average
 \end{lstlisting}
 ソースコード\ref{unused_list}の場合，学生の人数が4人になった場合，修正する箇所が多いことが問題点としてあげられる．このような問題はリストを使うことである程度解消することが出来る．リストは「リストというデータの中に複数のデータを格納できる」という型なので，「学生達の点数」というデータに「具体的な各学生の点数」を格納する．
 \begin{lstlisting}[caption=リストを使った場合, label=list1]
-results = [68, 81, 49]
-average = sum(results) / len(results)
-print average
+>>> results = [68, 81, 49]
+>>> average = sum(results) / len(results)
+>>> print average
 \end{lstlisting}
 ソースコード\ref{list1}の1行目で「学生たちの点数」というリストを作成している．2行目にあるsum()はリスト内にあるデータの合計値を算出する関数，len()はリストに格納される要素数を返す関数である．学生一人ひとりの点数毎に変数を作成していないので，「複数の学生たちの点数の格納」が簡単なことに加え，平均値の算出方法が学生の数に依存していない．リストを使うことで「ひとつのグループに属するデータ」を便利に扱うことが出来る．
 \begin{lstlisting}[caption=リストの使い方1, label=list2]
@@ -103,11 +103,11 @@ print average
 \begin{lstlisting}[caption=リストの使い方2, label=list3]
 リスト名[要素の番号]
 
->>>b = [1,2,3]
->>>print(b[0]) # 1
->>>print(b[2]) # 3
->>>b[1] = 5
->>>print(b[1]) # 5
+>>> b = [1,2,3]
+>>> print(b[0]) # 1
+>>> print(b[2]) # 3
+>>> b[1] = 5
+>>> print(b[1]) # 5
 >>> b.append(4)   # 末尾へ4を挿入
 >>> print(b)
 [1, 5, 3, 4]
@@ -150,10 +150,10 @@ whileは条件が真である間，インデントされたブロックの処理
 \end{figure}
 
 \begin{lstlisting}[caption=whileの使い方, label=while]
-n = 0
-while n < 10:
-	print n
-	n += 1
+>>> n = 0
+>>> while n < 10:
+...	 print n
+...	 n += 1
 \end{lstlisting}
 % +=の説明
 
@@ -166,90 +166,113 @@ forはリストに格納されている要素をすべてチェックするよ�
 \end{figure}
 
 \begin{lstlisting}[caption=forの使い方, label=for]
-n = [1,2,3]
-for x in n:
-	print x 	# 1, 2, 3
-for n in range(10):
-	print n	# 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+>>> n = [1,2,3]
+>>> for x in n:
+...	print x 	
+...
+1
+2
+3
+>>> for m in range(10):
+...	 print m
+...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
 \end{lstlisting}
 
 
 \subsection{break}
 whileやforを使った繰り返し処理はbreakを使うことで抜け出すことができる（ソースコード\ref{break}）．
 \begin{lstlisting}[caption=break, label=break]
- for x in range(10):
- 	if x == 5:
-		break
-	print x	# 0, 1, 2, 3, 4
+>>> for x in range(10):
+... 	if x == 5:
+... 		break
+... 	print x
+...
+0
+1
+2
+3
+4
 \end{lstlisting}
 %whileを用いて1から1000までの数の和を求めるプログラムを作成せよ
 
 \section{関数}
-pythonには様々な組み込み関数が用意されている．これまで使用してきたrange()やsum()，len()などがそれである．関数を使用する利点としてプログラムの可読性が向上することがあげられる．例えば絶対値を得ようと思った場合，以下のようにifを使って条件分岐させることで実現が可能である（ソースコード\ref{abs1}）．
-\begin{lstlisting}[caption=絶対値の計算をするコード, label=abs1]
-x = -5
-if(x<0):
-    x = -x
-print(x)
+Pythonには様々な組み込み関数が用意されている．これまで使用してきたrange()やsum()，len()などがそれである．関数を使用する利点としてプログラムの可読性が向上することがあげられる．例えば絶対値を得ようと思った場合，以下のようにifを使って条件分岐させることで実現が可能である（ソースコード\ref{abs1}）．
+\begin{lstlisting}[caption=絶対値に変換するコード, label=abs1]
+>>> x = -5
+>>> if(x<0):
+...     x = -x
+...
+>>> print x
+5
 \end{lstlisting}
 同じ処理を組み込み関数であるabs()を使って書くと以下のようになる（ソースコード\ref{abs2}） ．
 \begin{lstlisting}[caption=abs(), label=abs2]
-x = abs(-5)
-print(x)
+>>> x = abs(-5)
+>>> print(x)
+5
 \end{lstlisting}
 関数には同じコードを何度も書かなくてすむといったメリットもある（ソースコード\ref{abs3}）．
-\begin{lstlisting}[caption=絶対値の検索をするコードを使った場合, label=abs3]
-x = 5
-y = -10
-
-if(x<0):
-    x = x * -1
-if(y<0):
-    y = y * -1
-
-print 'abs x > abs y ?'
-print x > y 
+\begin{lstlisting}[caption=絶対値に変換するコードを使った場合, label=abs3]
+>>> x = 5
+>>> y = -10
+>>> if(x<0):
+... 	x = -x
+...
+>>> if(y<0):
+... 	y = -y
+...
+>>> print x > y 
+False
 \end{lstlisting}
 関数を使って書き直すとこのようになる（ソースコード\ref{abs4}）．
 \begin{lstlisting}[caption=abs()を使った場合, label=abs4]
-x = 5
-y = -10
-
-x = abs(x)
-y = abs(y)
-
-print 'abs x > abs y ?'
-print x > y
+>>> x = 5
+>>> y = -10
+>>> x = abs(x)
+>>> y = abs(y)
+>>> print x > y
+False
 \end{lstlisting}
 関数は自分で作成することも可能である．関数は入力を受け取り，それを加工して出力する．入力と出力はなくてもかまわず，入力がない場合は関数の宣言の引数をなくし，出力が不要な場合はreturn文をなくす．関数は宣言した引数に対応する箇所に入力値を入れることで呼び出す．引数がない関数に関しては()に何も入れずに，引数を取る場合は()に値を入力する．（ソースコード\ref{def}）．
 \begin{lstlisting}[caption=関数の作成, label=def]
 # 引数がない関数
-def my_func1():
-  return 0
-
+>>> def my_func1():
+...	 return 0
+...
 # 返り値がない関数
-def my_func2(x):
-  x = x * -1
-  
-print my_func1()  # 0 と表示される
-print my_func2(5) # None と表示される
+>>> def my_func2(x):
+...	 x = -x
+...  
+>>> print my_func1()
+0
+>>> print my_func2(5)
+None
 \end{lstlisting}
 引数は複数指定できるが，return文は一度しか実行されない．
 \begin{lstlisting}[caption=returnの動作, label=return]
-def my_func3(x, y):
-    print "A"
-    if(x > y):
-        return x
-    print "B"
-    return y
-
-print my_func3(5,1)
-# A
-# 5
-
-print my_func3(2,4)
-# A
-# B
-# 4
+>>> def my_func3(x, y):
+...     print "A"
+...     if(x > y):
+...         return x
+...     print "B"
+...     return y
+...
+>>> print my_func3(5,1)
+A
+5
+>>> print my_func3(2,4)
+A
+B
+4
 \end{lstlisting}
 上記のソースコード\ref{return}では二つのreturn文が確認できる．x \textgreater yの条件が満たされた場合Bが出力されていないことに注目して欲しい．returnはいくつあっても構わないが，returnされたあとの関数の処理は一切無視される．
